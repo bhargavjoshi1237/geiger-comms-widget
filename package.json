@@ -1,0 +1,34 @@
+{
+  "name": "@geiger/comms-widget",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Typed loader, API and React bindings for the Geiger Comms Messenger widget.",
+  "license": "UNLICENSED",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js",
+      "require": "./dist/react.cjs"
+    }
+  },
+  "sideEffects": false,
+  "files": ["dist", "src", "README.md"],
+  "scripts": {
+    "build": "tsc --project tsconfig.json"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "^5.7.0"
+  }
+}
