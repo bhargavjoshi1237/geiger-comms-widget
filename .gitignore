@@ -2,3 +2,7 @@ node_modules/
 dist_cjs/
 *.tsbuildinfo
 
+# Built by `npm run demo:build`.
+demo/bundle.js
+demo/bundle.css
+

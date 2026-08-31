@@ -1,0 +1,160 @@
+/* Chrome for the demo page only. Nothing here styles the widget — that all
+ * lives in ../src/ui/widget.css. The canvas colours match the design doc so the
+ * panels sit on the same background they were drawn on. */
+
+:root {
+  --page: #0d0d0d;
+  --page-fg: #e7e7e7;
+  --page-dim: #737373;
+  --page-line: #262626;
+  --page-chip: #242424;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}
+
+[data-demo-theme="light"] {
+  --page: #f5f5f5;
+  --page-fg: #161616;
+  --page-dim: #6b7280;
+  --page-line: #e5e7eb;
+  --page-chip: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-demo-theme] {
+  min-height: 100vh;
+  background: var(--page);
+  color: var(--page-fg);
+  transition: background 0.2s ease;
+}
+
+.page-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 44px 48px 28px;
+  border-bottom: 1px solid var(--page-line);
+  flex-wrap: wrap;
+}
+
+.page-head h1 {
+  margin: 0 0 6px;
+  font: 600 20px/1.2 var(--font-sans);
+  letter-spacing: -0.01em;
+}
+
+.page-head p {
+  margin: 0;
+  max-width: 640px;
+  font: 400 12.5px/1.6 var(--font-sans);
+  color: var(--page-dim);
+  text-wrap: pretty;
+}
+
+.page-head strong {
+  color: var(--page-fg);
+  font-weight: 600;
+}
+
+.themebtn {
+  flex: none;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid var(--page-line);
+  background: transparent;
+  color: var(--page-fg);
+  font: 500 12px var(--font-sans);
+  cursor: pointer;
+}
+
+.themebtn:hover {
+  background: var(--page-chip);
+}
+
+.turn {
+  padding: 36px 48px;
+  border-bottom: 1px solid var(--page-line);
+}
+
+.turn h2 {
+  margin: 0 0 22px;
+  font: 600 13px/1.2 var(--font-sans);
+}
+
+.note {
+  margin: 0;
+  max-width: 640px;
+  font: 400 12px/1.6 var(--font-sans);
+  color: var(--page-dim);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.frame {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-margin-top: 16px;
+}
+
+.frame figcaption {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font: 400 11px/1.3 var(--font-sans);
+  color: var(--page-dim);
+  max-width: 400px;
+}
+
+.frame__id {
+  font: 600 10.5px var(--font-mono);
+  padding: 3px 7px;
+  background: var(--page-chip);
+  color: var(--page-fg);
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.frame:target .frame__id {
+  background: #3b82f6;
+  color: #fff;
+}
+
+/* The launcher trio and the proactive card need a panel-sized box so the row
+ * keeps its baseline. */
+.launchers {
+  width: 200px;
+  height: 620px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 28px;
+  padding: 0 4px 4px;
+}
+
+.proactive-cell {
+  width: 384px;
+  height: 620px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 4px;
+}

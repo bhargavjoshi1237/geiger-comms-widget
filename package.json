@@ -17,18 +17,33 @@
       "types": "./dist/react.d.ts",
       "import": "./dist/react.js",
       "require": "./dist/react.cjs"
-    }
+    },
+    "./ui": {
+      "types": "./dist/ui/index.d.ts",
+      "import": "./dist/ui/index.js"
+    },
+    "./ui/widget.css": "./src/ui/widget.css"
   },
   "sideEffects": false,
-  "files": ["dist", "src", "README.md"],
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
   "scripts": {
-    "build": "tsc --project tsconfig.json"
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --noEmit --project tsconfig.json",
+    "demo:build": "esbuild demo/main.tsx --bundle --format=esm --jsx=automatic --outfile=demo/bundle.js",
+    "demo": "esbuild demo/main.tsx --bundle --format=esm --jsx=automatic --outfile=demo/bundle.js --servedir=demo --serve=5173"
   },
   "peerDependencies": {
     "react": ">=18"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.2.5",
+    "esbuild": "^0.28.2",
+    "react-dom": "^19.2.8",
     "typescript": "^5.7.0"
   }
 }

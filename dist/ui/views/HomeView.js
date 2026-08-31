@@ -1,0 +1,15 @@
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+// 1a — Home.
+//
+// Greeting header, the "Ask Aria" hero card, the most recent conversation and
+// a help search box. The bottom nav is supplied by the panel, not by this view.
+import { ChevronRight, Search, Sparkles, X } from "../icons";
+import { AiBadge, Avatar, Cap } from "../primitives";
+export function HomeView({ data, recent, onAsk, onOpenConversation, onSeeAll, onSearch, onClose, }) {
+    return (_jsxs(_Fragment, { children: [_jsxs("header", { className: "gc-header gc-header--home", children: [_jsxs("div", { className: "gc-header__row", children: [_jsxs("div", { className: "gc-header__brand", children: [_jsx("div", { className: "gc-header__logo", "aria-hidden": "true", children: data.brand.initials }), _jsx("span", { className: "gc-header__brandname", children: data.brand.name })] }), _jsx("button", { type: "button", className: "gc-iconbtn", onClick: onClose, "aria-label": "Close messenger", children: _jsx(X, {}) })] }), _jsxs("div", { className: "gc-header__greeting", children: [_jsx("p", { children: "Hi there." }), _jsx("p", { children: "How can we help?" })] })] }), _jsxs("div", { className: "gc-home", children: [_jsxs("button", { type: "button", className: "gc-card", onClick: onAsk, children: [_jsx("div", { className: "gc-card__icon", "aria-hidden": "true", children: _jsx(Sparkles, { size: 15 }) }), _jsxs("div", { className: "gc-card__body", children: [_jsxs("div", { className: "gc-card__titlerow", children: [_jsxs("span", { className: "gc-card__title", children: ["Ask ", data.assistant.name] }), _jsx(AiBadge, {})] }), _jsx("p", { className: "gc-card__desc", children: data.assistant.tagline })] }), _jsx(ChevronRight, { className: "gc-card__chev" })] }), recent ? (_jsxs(_Fragment, { children: [_jsxs("div", { className: "gc-sectionrow", children: [_jsx(Cap, { children: "Recent" }), _jsx("button", { type: "button", className: "gc-link", onClick: onSeeAll, children: "See all" })] }), _jsxs("button", { type: "button", className: "gc-recent", onClick: () => onOpenConversation(recent.id), children: [_jsx(Avatar, { person: recent.with, showStatus: true }), _jsxs("div", { className: "gc-recent__body", children: [_jsxs("div", { className: "gc-recent__top", children: [_jsx("span", { className: "gc-recent__name", children: recent.with.name }), _jsx("span", { className: "gc-recent__time", children: recent.time })] }), _jsx("p", { className: "gc-recent__preview", children: recent.preview })] })] })] })) : null, _jsxs("form", { className: "gc-search", onSubmit: (e) => {
+                            e.preventDefault();
+                            const input = e.currentTarget.elements.namedItem("q");
+                            if (input instanceof HTMLInputElement)
+                                onSearch(input.value);
+                        }, children: [_jsx(Search, { className: "gc-search__icon" }), _jsx("input", { name: "q", type: "search", className: "gc-search__input", placeholder: "Search for help", "aria-label": "Search for help" })] })] })] }));
+}
