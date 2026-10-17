@@ -1,0 +1,4 @@
+node_modules/
+*.log
+.DS_Store
+# dist/ is committed on purpose: GitHub installs get no build step.

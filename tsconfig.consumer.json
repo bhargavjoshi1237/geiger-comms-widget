@@ -1,0 +1,16 @@
+{
+  // Type-checks a consumer file against the BUILT package (dist/*.d.ts via the
+  // "exports" map), the way an app that installed it from GitHub sees it.
+  "compilerOptions": {
+    "target": "ES2019",
+    "lib": ["ES2020", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": false,
+    "noEmit": true,
+    "types": []
+  },
+  "include": ["test/consumer.test.tsx"]
+}
