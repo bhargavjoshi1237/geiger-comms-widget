@@ -73,6 +73,15 @@ test("options changes re-apply without a shutdown", async () => {
   await tick();
   assert.deepEqual(commandsSince(n), [["boot", JWT_U2]]);
   assert.deepEqual(loader.commands().at(-1)[1].options, { hideDefaultLauncher: true });
+
+  // sound: false reaches the loader, and dropping it boots again with the default (no key).
+  await render({ jwt: JWT_U2, options: { hideDefaultLauncher: true, sound: false } });
+  await tick();
+  assert.deepEqual(loader.commands().at(-1)[1].options, { hideDefaultLauncher: true, sound: false });
+  await render({ jwt: JWT_U2, options: { hideDefaultLauncher: true } });
+  await tick();
+  assert.deepEqual(commandsSince(n), [["boot", JWT_U2], ["boot", JWT_U2], ["boot", JWT_U2]]);
+  assert.deepEqual(loader.commands().at(-1)[1].options, { hideDefaultLauncher: true });
 });
 
 test("useGeigerComms reflects unread/open state and drives the Messenger", async () => {

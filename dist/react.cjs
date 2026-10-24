@@ -33,11 +33,12 @@ function identityOf(jwt) {
 function GeigerProvider({ appId, jwt, user, options, scriptUrl, apiBase, children }) {
   const identity = react.useMemo(() => identityOf(jwt), [jwt]);
   const hideDefaultLauncher = Boolean(options == null ? void 0 : options.hideDefaultLauncher);
+  const sound = (options == null ? void 0 : options.sound) !== false;
   const email = user == null ? void 0 : user.email;
-  const signature = JSON.stringify([hideDefaultLauncher, email != null ? email : null]);
-  const latest = react.useRef({ jwt, email, hideDefaultLauncher, scriptUrl, apiBase });
+  const signature = JSON.stringify([hideDefaultLauncher, sound, email != null ? email : null]);
+  const latest = react.useRef({ jwt, email, hideDefaultLauncher, sound, scriptUrl, apiBase });
   react.useEffect(() => {
-    latest.current = { jwt, email, hideDefaultLauncher, scriptUrl, apiBase };
+    latest.current = { jwt, email, hideDefaultLauncher, sound, scriptUrl, apiBase };
   });
   react.useEffect(() => {
     const prev = live;
@@ -45,7 +46,9 @@ function GeigerProvider({ appId, jwt, user, options, scriptUrl, apiBase, childre
     const current = { appId, identity, signature, timer: null };
     live = current;
     const p = latest.current;
-    const settings = { appId, options: { hideDefaultLauncher: p.hideDefaultLauncher } };
+    const bootOptions = { hideDefaultLauncher: p.hideDefaultLauncher };
+    if (!p.sound) bootOptions.sound = false;
+    const settings = { appId, options: bootOptions };
     if (p.jwt) settings.jwt = p.jwt;
     if (p.email) settings.user = { email: p.email };
     if (p.scriptUrl) settings.scriptUrl = p.scriptUrl;

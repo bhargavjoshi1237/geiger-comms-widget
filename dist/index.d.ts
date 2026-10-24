@@ -1,5 +1,5 @@
-import { G as GeigerBootSettings, a as GeigerCommsApi, b as GeigerCommsState, c as GeigerLoadOptions, T as TrackedEvent, U as Unsubscribe, L as LauncherState, S as SpaceName, E as EventMetadata, d as GeigerUpdateData } from './types-D6kpPxsF.js';
-export { e as GeigerBootOptions, f as GeigerUser, g as LauncherIcon } from './types-D6kpPxsF.js';
+import { G as GeigerBootSettings, a as GeigerCommsApi, b as GeigerCommsState, c as GeigerLoadOptions, T as TrackedEvent, U as Unsubscribe, L as LauncherState, S as SpaceName, E as EventMetadata, d as GeigerUpdateData } from './types-BC94cziO.js';
+export { e as GeigerBootOptions, f as GeigerUser, g as LauncherIcon } from './types-BC94cziO.js';
 
 /** Production loader; the loader bakes its own origin and /comms base path. */
 declare const DEFAULT_SCRIPT_URL = "https://geiger.studio/comms/widget/v1.js";

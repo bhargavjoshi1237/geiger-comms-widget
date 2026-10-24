@@ -1,6 +1,6 @@
 import * as react from 'react';
 import { ReactNode } from 'react';
-import { f as GeigerUser, e as GeigerBootOptions, S as SpaceName } from './types-D6kpPxsF.cjs';
+import { f as GeigerUser, e as GeigerBootOptions, S as SpaceName } from './types-BC94cziO.cjs';
 
 interface GeigerProviderProps {
     /** The widget app's public id from Messenger > Install, e.g. "wg_7fk2p9". */

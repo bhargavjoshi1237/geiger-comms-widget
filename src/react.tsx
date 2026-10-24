@@ -86,13 +86,14 @@ function identityOf(jwt: string | null | undefined): string | null {
 export function GeigerProvider({ appId, jwt, user, options, scriptUrl, apiBase, children }: GeigerProviderProps) {
   const identity = useMemo(() => identityOf(jwt), [jwt]);
   const hideDefaultLauncher = Boolean(options?.hideDefaultLauncher);
+  const sound = options?.sound !== false;
   const email = user?.email;
-  const signature = JSON.stringify([hideDefaultLauncher, email ?? null]);
+  const signature = JSON.stringify([hideDefaultLauncher, sound, email ?? null]);
 
   // Latest props for the boot effect, which deliberately ignores same-user jwt changes.
-  const latest = useRef({ jwt, email, hideDefaultLauncher, scriptUrl, apiBase });
+  const latest = useRef({ jwt, email, hideDefaultLauncher, sound, scriptUrl, apiBase });
   useEffect(() => {
-    latest.current = { jwt, email, hideDefaultLauncher, scriptUrl, apiBase };
+    latest.current = { jwt, email, hideDefaultLauncher, sound, scriptUrl, apiBase };
   });
 
   useEffect(() => {
@@ -102,7 +103,9 @@ export function GeigerProvider({ appId, jwt, user, options, scriptUrl, apiBase, 
     live = current;
 
     const p = latest.current;
-    const settings: GeigerBootSettings = { appId, options: { hideDefaultLauncher: p.hideDefaultLauncher } };
+    const bootOptions: GeigerBootOptions = { hideDefaultLauncher: p.hideDefaultLauncher };
+    if (!p.sound) bootOptions.sound = false;
+    const settings: GeigerBootSettings = { appId, options: bootOptions };
     if (p.jwt) settings.jwt = p.jwt;
     if (p.email) settings.user = { email: p.email };
     if (p.scriptUrl) settings.scriptUrl = p.scriptUrl;

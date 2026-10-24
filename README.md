@@ -90,7 +90,7 @@ function HelpButton() {
 ```
 
 `GeigerProvider` props: `appId` (required), `jwt`, `user` (`{ email }`),
-`options` (`{ hideDefaultLauncher }`), `scriptUrl`, and `apiBase`.
+`options` (`{ hideDefaultLauncher, sound }`), `scriptUrl`, and `apiBase`.
 
 How the provider reacts to changes:
 
@@ -133,6 +133,24 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     </html>
   );
 }
+```
+
+## Reply chime
+
+When a support or AI reply arrives, the Messenger plays a short chime: two notes on
+a wooden bar, called Mallet. It plays at most once every 3 seconds. Replies that were
+already waiting don't chime, and neither does a reply in the conversation the visitor
+has open.
+
+The Messenger loads when the visitor first opens it, so chimes start after that first
+open on each page. That click also satisfies the browser rule that sound needs a user
+gesture. The sound is synthesized in the host page, so there is no audio file to load.
+To keep the Messenger silent on your site:
+
+```ts
+GeigerComms.boot({ appId: "wg_7fk2p9", options: { sound: false } });
+// or
+<GeigerProvider appId="wg_7fk2p9" options={{ sound: false }}>…</GeigerProvider>
 ```
 
 ## Signing the JWT (server-side, Node)
@@ -226,7 +244,7 @@ GeigerComms.boot({ appId: "wg_…", apiBase });
 
 | Method | Notes |
 |---|---|
-| `boot(settings)` | `{ appId, jwt?, user?: { email? }, options?: { hideDefaultLauncher? }, scriptUrl?, apiBase? }`. Injects the loader on first call. |
+| `boot(settings)` | `{ appId, jwt?, user?: { email? }, options?: { hideDefaultLauncher?, sound? }, scriptUrl?, apiBase? }`. Injects the loader on first call. |
 | `update(data)` | `{ jwt?, user?: { email? } }`. A new `jwt` re-authenticates the running Messenger. |
 | `shutdown()` | Removes the launcher and ends the session. Call it on sign-out. |
 | `show()` / `hide()` | Open or close the panel |

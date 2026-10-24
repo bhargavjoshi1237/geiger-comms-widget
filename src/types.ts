@@ -41,6 +41,11 @@ export interface GeigerUser {
 export interface GeigerBootOptions {
   /** Hide the default launcher so the host page can render its own button. */
   hideDefaultLauncher?: boolean;
+  /**
+   * Play the reply chime when a support reply arrives. Defaults to true; pass
+   * false to keep the Messenger silent on this site.
+   */
+  sound?: boolean;
 }
 
 /** Settings for `boot()`. */
